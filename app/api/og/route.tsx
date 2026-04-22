@@ -23,19 +23,12 @@ export async function GET(request: Request) {
     const png = await render({
       value: html,
       width: 1200,
-      // height: 800, // 典型的なOGPサイズ
-      outputWidth: 1200,
-      outputHeight: 630,
-      // crop: {
-      //   x: 0,
-      //   y: 0,
-      //   width: 1200,
-      //   height: 630,
-      // },
-      fit: "cover",
-      fitPosition: {
-        x: 0.5,
+      // 先頭部分を切り抜く
+      crop: {
+        x: 0,
         y: 0,
+        width: 1200,
+        height: 630,
       },
       baseUrl,
       format: "png",
@@ -43,11 +36,10 @@ export async function GET(request: Request) {
 
     return new NextResponse(Buffer.from(png), {
       status: 200,
-      // headers: {
-      //   "Content-Type": "image/png",
-      //   "Cache-Control": "public, max-age=3600, s-maxage=3600",
-      // },
-      // Note: Edge compatibility: in NextJS 16 'Buffer.from' works on Node and Edge (as Uint8Array wrapper)
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=3600, s-maxage=3600",
+      },
     });
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);

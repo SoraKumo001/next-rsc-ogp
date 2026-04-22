@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: ["400"],
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
-
-import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
   title: "Satoru Render Showcase",
@@ -27,10 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+      className={`${inter.variable} ${instrumentSerif.variable} antialiased dark`}
     >
       <body className="flex flex-col bg-background text-white selection:bg-white/10">
-        <Navbar />
         {children}
       </body>
     </html>

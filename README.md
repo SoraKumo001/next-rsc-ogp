@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Satoru Render Showcase (next-rsc-ogp)
 
-## Getting Started
+`satoru-render` を使用した、Next.js (App Router) における動的 OGP 画像生成のショーケースプロジェクトです。
+Skia バックエンドと WebAssembly を活用し、ヘッドレスブラウザ（Puppeteer 等）を使用せずに高速かつ高精度な HTML to Image レンダリングを実現します。
 
-First, run the development server:
+## 🌟 主な特徴
+
+- **動的 OGP 生成**: ページの HTML をリアルタイムで取得し、`satoru-render` で PNG 画像に変換。
+- **高パフォーマンス**: Skia + WASM によるネイティブ級のパフォーマンス。Edge Runtime への対応も容易。
+- **Next.js 統合**: App Router の `Metadata API` と連携し、`/api/og?path=...` 形式で動的に画像を紐付け。
+- **プレミアム・デザイン**: ミニマリストで洗練された「Studio」スタイルの UI デザイン。
+
+## 🚀 技術スタック
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Rendering Engine**: [satoru-render](https://github.com/SoraKumo001/satoru) (Skia / litehtml / WASM)
+- **Styling**: Vanilla CSS / Tailwind CSS (Lucide Icons 等)
+- **Language**: TypeScript
+
+## 🛠️ セットアップ
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# 依存関係のインストール
+pnpm install
+
+# 開発サーバーの起動
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) を開いて結果を確認してください。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 プロジェクト構造
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/api/og/route.tsx`: OGP 画像生成のエンドポイント。
+- `lib/metadata.ts`: メタデータ生成ヘルパー。各ページで動的 OGP を簡単に設定できます。
+- `app/showcase/`: レンダリングの精度と品質を示すためのショーケースページ。
+- `app/globals.css`: プレミアムな「Studio」体験を実現するためのカスタム CSS デザインシステム。
 
-## Learn More
+## 📖 使い方
 
-To learn more about Next.js, take a look at the following resources:
+### 動的 OGP の設定
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`lib/metadata.ts` の `getMetadata` 関数を使用することで、任意のページに動的な OGP 画像を適用できます。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```tsx
+// app/page.tsx
+import { getMetadata } from "@/lib/metadata";
 
-## Deploy on Vercel
+export const metadata = getMetadata({
+  title: "My Page Title",
+  description: "Page description...",
+  path: "/", // 画像生成のソースとなるパス
+});
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+これにより、`<meta property="og:image" content="/api/og?path=%2F">` が自動的に挿入されます。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔗 関連リンク
+
+- [satoru-render Repository](https://github.com/SoraKumo001/satoru)
+- [Next.js Documentation](https://nextjs.org/docs)
+
