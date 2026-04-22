@@ -1,70 +1,80 @@
 import { getMetadata } from "@/lib/metadata";
-import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = getMetadata({
-  title: "Home",
-  description: "Dynamic OGP generated via HTTP fetch.",
+  title: "Satoru | Precice Rendering Studio",
+  description:
+    "Experience the next level of HTML to Image synthesis. Zero-latency, native Skia performance.",
   path: "/",
 });
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black h-full w-full min-h-screen">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="relative bg-background studio-grid">
+      <main className="px-8 md:px-24 pt-48 pb-24 z-10 w-full max-w-[1800px] mx-auto">
+        <div className="animate-reveal">
+          <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-studio-muted mb-8 block">
+            Synthesized for the Edge
+          </span>
+          <h1 className="text-[14vw] md:text-[10vw] font-serif italic leading-[0.85] tracking-tighter text-white mb-16">
+            Everything is <br />
+            <span className="text-accent not-italic">Precise.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-black px-5 text-white transition-colors hover:bg-[#383838] dark:bg-white dark:text-black dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="flex flex-col md:flex-row items-end justify-between gap-12 mt-32">
+          <div className="max-w-xl animate-reveal delay-100">
+            <p className="text-lg md:text-2xl text-studio-muted leading-[1.4] tracking-tight">
+              A high-performance HTML-to-Image synthesis engine. Native Skia
+              backend. Optimized for Next.js and Edge runtimes. No headless
+              overhead, just pure layout execution.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-start gap-12 animate-reveal delay-200">
+            <div className="grid grid-cols-2 gap-12 md:gap-24">
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-studio-muted block mb-4">
+                  Core
+                </span>
+                <span className="text-sm font-medium tracking-tight text-white block">
+                  Skia Engine
+                </span>
+                <span className="text-sm font-medium tracking-tight text-white block">
+                  litehtml Parser
+                </span>
+              </div>
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-studio-muted block mb-4">
+                  Runtime
+                </span>
+                <span className="text-sm font-medium tracking-tight text-white block">
+                  WebAssembly
+                </span>
+                <span className="text-sm font-medium tracking-tight text-white block">
+                  Edge API Ready
+                </span>
+              </div>
+            </div>
+
+            <div className="flex gap-8">
+              <Link
+                href="/showcase"
+                className="group relative text-[10px] uppercase tracking-[0.4em] font-bold text-white pt-2"
+              >
+                Enter Showcase
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              </Link>
+              <a
+                href="https://github.com/SoraKumo001/satoru"
+                target="_blank"
+                className="group relative text-[10px] uppercase tracking-[0.4em] font-bold text-studio-muted pt-2 hover:text-white transition-colors"
+              >
+                Source Code
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+              </a>
+            </div>
+          </div>
         </div>
       </main>
     </div>
