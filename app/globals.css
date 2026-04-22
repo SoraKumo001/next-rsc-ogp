@@ -74,15 +74,27 @@
 }
 
 .text-gradient {
-  color: #ffffff;
+  background: linear-gradient(to right, #ffffff, #a1a1aa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 .text-gradient-accent {
-  color: #f472b6;
+  background: linear-gradient(to right, #f472b6, #db2777);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 .text-gradient-aurora {
-  color: #818cf8;
+  background: linear-gradient(to right, #818cf8, #c084fc, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 
@@ -95,7 +107,10 @@
   .studio-grid {
     background-image: none !important;
   }
-  .text-gradient-aurora {
+  .text-gradient, .text-gradient-accent, .text-gradient-aurora {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
     color: black !important;
   }
 }

@@ -77,7 +77,9 @@ export default function Page() {
       {/* Mechanism Section */}
       <section className="py-24 px-6 max-w-7xl mx-auto grid md:grid-cols-3 gap-12 border-t border-white/5">
         <div className="space-y-4 animate-reveal delay-200">
-          <div className="text-3xl font-serif italic text-indigo-400">01.</div>
+          <div className="text-3xl font-serif italic text-gradient-aurora">
+            01.
+          </div>
           <h3 className="text-xl font-bold font-sans">Fetch HTML</h3>
           <p className="text-studio-muted text-sm leading-relaxed">
             APIルートがリクエストを受け取ると、対象のURLのHTMLをサーバーサイドでフェッチします。
@@ -88,7 +90,9 @@ export default function Page() {
           className="space-y-4 animate-reveal delay-200"
           style={{ animationDelay: "300ms" }}
         >
-          <div className="text-3xl font-serif italic text-purple-400">02.</div>
+          <div className="text-3xl font-serif italic text-gradient-aurora">
+            02.
+          </div>
           <h3 className="text-xl font-bold font-sans">Satoru Render</h3>
           <p className="text-studio-muted text-sm leading-relaxed">
             satoru-render
@@ -100,7 +104,9 @@ export default function Page() {
           className="space-y-4 animate-reveal delay-200"
           style={{ animationDelay: "400ms" }}
         >
-          <div className="text-3xl font-serif italic text-pink-400">03.</div>
+          <div className="text-3xl font-serif italic text-gradient-aurora">
+            03.
+          </div>
           <h3 className="text-xl font-bold font-sans">Response</h3>
           <p className="text-studio-muted text-sm leading-relaxed">
             生成されたPNGバイナリが適切なキャッシュヘッダーと共に返され、
@@ -112,7 +118,7 @@ export default function Page() {
       {/* Code Section */}
       <section className="py-24 px-6 max-w-4xl mx-auto">
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 space-y-6 animate-reveal delay-300">
-          <h3 className="text-2xl font-serif">Implementation</h3>
+          <h3 className="text-2xl font-serif text-gradient">Implementation</h3>
           <div className="font-mono text-sm overflow-x-auto p-6 bg-black/40 rounded-xl border border-white/5 leading-relaxed">
             <pre className="text-indigo-300">
               {`// lib/metadata.ts
