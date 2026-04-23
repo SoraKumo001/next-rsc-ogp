@@ -15,8 +15,8 @@ importers:
         specifier: 66.6.8
         version: 66.6.8
       lucide-react:
-        specifier: 1.8.0
-        version: 1.8.0(react@19.2.5)
+        specifier: 1.9.0
+        version: 1.9.0(react@19.2.5)
       next:
         specifier: 16.2.4
         version: 16.2.4(@babel/core@7.29.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -27,8 +27,8 @@ importers:
         specifier: 19.2.5
         version: 19.2.5(react@19.2.5)
       satoru-render:
-        specifier: 1.0.5
-        version: 1.0.5(@unocss/core@66.6.8)(@unocss/preset-wind4@66.6.8)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        specifier: 1.0.7
+        version: 1.0.7(@unocss/core@66.6.8)(@unocss/preset-wind4@66.6.8)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -1475,8 +1475,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@1.8.0:
-    resolution: {integrity: sha512-WuvlsjngSk7TnTBJ1hsCy3ql9V9VOdcPkd3PKcSmM34vJD8KG6molxz7m7zbYFgICwsanQWmJ13JlYs4Zp7Arw==}
+  lucide-react@1.9.0:
+    resolution: {integrity: sha512-6qVAmbgCjcJz7sAGSPSSJ++RAwjlK2XCbRrZKv63Ciko1KT8jX0//CXxgI3jg2HlJu8tADqdYlNDebmYjeoruA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -1692,8 +1692,8 @@ packages:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
 
-  satoru-render@1.0.5:
-    resolution: {integrity: sha512-n7FI073YO4ulg+SeTS7m30Dk9HtR/NFRiFW46zVy2D9M2jooPhtN+pxZrVIIgo9fsLhYzrChHpmWxdTc4niD7g==}
+  satoru-render@1.0.7:
+    resolution: {integrity: sha512-ROxguNRK5ZorTzAYYH6Do816NWKs8AJcITDlZAkmKRsQcL/ZX0QPuNaTC36PXozkifgVEXyOc6JOmIYXLNB0XQ==}
     hasBin: true
     peerDependencies:
       '@unocss/core': ^66.6.5
@@ -3445,7 +3445,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@1.8.0(react@19.2.5):
+  lucide-react@1.9.0(react@19.2.5):
     dependencies:
       react: 19.2.5
 
@@ -3681,7 +3681,7 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  satoru-render@1.0.5(@unocss/core@66.6.8)(@unocss/preset-wind4@66.6.8)(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  satoru-render@1.0.7(@unocss/core@66.6.8)(@unocss/preset-wind4@66.6.8)(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       worker-lib: 2.2.0
     optionalDependencies:
