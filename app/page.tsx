@@ -39,7 +39,7 @@ export default function Page() {
           <h1 className="text-6xl md:text-8xl font-serif tracking-tight leading-[1.1]">
             <span className="text-gradient-aurora">Dynamic OGP</span>
             <br />
-            <span className="italic">at the Speed of Light</span>
+            <span className="italic text-gradient">at the Speed of Light</span>
           </h1>
           <p className="text-xl text-studio-muted max-w-2xl mx-auto font-sans leading-relaxed">
             satoru-render は、HTMLを直接画像に変換する強力なエンジンです。
