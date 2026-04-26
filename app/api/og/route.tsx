@@ -5,11 +5,20 @@ export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const baseUrl = url.origin;
-    const path = url.searchParams.get("path") || "/";
+    const targetPath = url.searchParams.get("path") || "/";
+
+    // ターゲットURLの構築
+    const targetUrl = new URL(targetPath, baseUrl);
+
+    // 'path' 以外の全てのクエリパラメータをターゲットURLに引き継ぐ
+    url.searchParams.forEach((value, key) => {
+      if (key !== "path") {
+        targetUrl.searchParams.set(key, value);
+      }
+    });
 
     // HTTP経由で表示対象のHTMLを取得
-    const targetUrl = new URL(path, baseUrl).toString();
-    const response = await fetch(targetUrl);
+    const response = await fetch(targetUrl.toString());
 
     if (!response.ok) {
       throw new Error(
