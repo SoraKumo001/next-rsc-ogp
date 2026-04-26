@@ -38,7 +38,7 @@ export async function GET(request: Request) {
       status: 200,
       headers: {
         "Content-Type": "image/png",
-        "Cache-Control": "public, max-age=3600, s-maxage=3600",
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=3600",
       },
     });
   } catch (err: unknown) {
