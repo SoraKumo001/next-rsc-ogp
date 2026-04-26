@@ -48,6 +48,11 @@ const notoEmoji = Noto_Emoji({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000",
+  ),
   title: "Satoru Render Showcase",
   description: "High-fidelity dynamic OGP generation library.",
 };

@@ -1,62 +1,74 @@
-# Satoru Render Showcase (next-rsc-ogp)
+# Weather Hub - Satoru Render Showcase
 
-`satoru-render` を使用した、Next.js (App Router) における動的 OGP 画像生成のショーケースプロジェクトです。
-Skia バックエンドと WebAssembly を活用し、ヘッドレスブラウザ（Puppeteer 等）を使用せずに高速かつ高精度な HTML to Image レンダリングを実現します。
+`satoru-render` を活用した、Next.js (App Router) における高精度な動的 OGP 生成のショーケースプロジェクトです。
+気象庁（JMA）の公開APIから取得したリアルタイムな天気予報を、美しいデザインで表示し、そのページ自体をそのまま OGP 画像として提供します。
 
-## 🌟 主な特徴
+## 🌟 プロジェクトの概要
 
-- **動的 OGP 生成**: ページの HTML をリアルタイムで取得し、`satoru-render` で PNG 画像に変換。
-- **高パフォーマンス**: Skia + WASM によるネイティブ級のパフォーマンス。Edge Runtime への対応も容易。
-- **Next.js 統合**: App Router の `Metadata API` と連携し、`/api/og?path=...` 形式で動的に画像を紐付け。
-- **プレミアム・デザイン**: ミニマリストで洗練された「Studio」スタイルの UI デザイン。
+このプロジェクトは、ヘッドレスブラウザ（Puppeteerなど）を使用せずに、サーバーサイドで HTML を直接 PNG 画像に変換する `satoru-render` の実用例を示します。
 
-## 🚀 技術スタック
+### 1. 動的 OGP 生成の仕組み
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **Rendering Engine**: [satoru-render](https://github.com/SoraKumo001/satoru) (Skia / litehtml / WASM)
-- **Styling**: Vanilla CSS / Tailwind CSS (Lucide Icons 等)
-- **Language**: TypeScript
+一般的な OGP 生成（`@vercel/og` 等）は、専用の Canvas API や特定のサブセットを用いて画像を構築しますが、本プロジェクトでは**「ユーザーが見ているページそのもの」**を画像化します。
 
-## 🛠️ セットアップ
+1. **メタデータ生成**: 各ページで `Metadata API` が実行され、OGP画像URLとして `/api/og?path=/target-path` を返します。
+2. **画像リクエスト**: SNSやクローラーがこのURLにアクセスします。
+3. **HTML取得**: `/api/og` エンドポイントが内部的にターゲットパスの HTML を `fetch` します。
+4. **レンダリング**: 取得した HTML 文字列を `satoru-render` に渡します。
+5. **画像変換**: Skia バックエンドと WebAssembly を用いて、CSSレイアウトを忠実に再現した PNG 画像を高速に生成し、レスポンスとして返します。
 
-```bash
-# 依存関係のインストール
-pnpm install
+### 2. 気象庁 API の統合
 
-# 開発サーバーの起動
-pnpm dev
-```
+`lib/jma.ts` を通じて、気象庁が提供する JSON データを取得しています。
 
-[http://localhost:3000](http://localhost:3000) を開いて結果を確認してください。
+- **地域リスト**: 全国約150箇所の地域情報を取得。
+- **天気予報**: 特定地域の3日間の天気、風、波の予報を取得。
+- **動的ルーティング**: `/forecast/[code]` 形式で、地域ごとの情報をオンデマンドで生成。
+
+## 🚀 主な機能
+
+- **Real-time Forecast**: 気象庁の最新データに基づいた天気表示。
+- **Dynamic OGP**: ページの状態（天気や地域名）が反映された OGP 画像をリアルタイム生成。
+- **Premium UI**: ガラスモーフィズム、カスタムグラデーション、アニメーションを多用したモダンな「Studio」デザイン。
+- **Optimized Performance**: WASM ベースのレンダリングによる、エッジ環境でも動作可能な高速な画像生成。
+
+## 🛠️ 技術スタック
+
+- **Framework**: [Next.js 16+](https://nextjs.org/) (App Router / RSC)
+- **Rendering Engine**: [satoru-render](https://github.com/SoraKumo001/satoru)
+- **Data Source**: 気象庁 (JMA) 公開 API
+- **Styling**: Vanilla CSS (CSS Variables) + Tailwind CSS
+- **Icons**: Custom SVG + Animated Weather Icons
 
 ## 📁 プロジェクト構造
 
-- `app/api/og/route.tsx`: OGP 画像生成のエンドポイント。
-- `lib/metadata.ts`: メタデータ生成ヘルパー。各ページで動的 OGP を簡単に設定できます。
-- `app/showcase/`: レンダリングの精度と品質を示すためのショーケースページ。
-- `app/globals.css`: プレミアムな「Studio」体験を実現するためのカスタム CSS デザインシステム。
+- `app/api/og/route.tsx`: OGP 画像生成の中核。HTMLをキャプチャし画像化。
+- `app/forecast/[code]/`: 地域ごとの天気予報を表示する動的ルート。
+- `lib/jma.ts`: 気象庁 API との通信ロジック。
+- `lib/metadata.ts`: 各ページ共通のメタデータ生成ヘルパー。
+- `app/layout.tsx`: `metadataBase` の設定や Google Fonts の最適化。
 
-## 📖 使い方
+## 📖 開発と運用
 
-### 動的 OGP の設定
+### セットアップ
 
-`lib/metadata.ts` の `getMetadata` 関数を使用することで、任意のページに動的な OGP 画像を適用できます。
+```bash
+pnpm install
+pnpm dev
+```
+
+### 使い方
+
+新しいページを作成し、`getMetadata` を呼び出すだけで、そのページの動的 OGP が有効になります。
 
 ```tsx
-// app/page.tsx
-import { getMetadata } from "@/lib/metadata";
-
 export const metadata = getMetadata({
-  title: "My Page Title",
-  description: "Page description...",
-  path: "/", // 画像生成のソースとなるパス
+  title: "地域名 天気予報",
+  description: "詳細な予報を表示します。",
+  path: "/your-page-path",
 });
 ```
 
-これにより、`<meta property="og:image" content="/api/og?path=%2F">` が自動的に挿入されます。
+## 🔗 関連リソース
 
-## 🔗 関連リンク
-
-- [satoru-render Repository](https://github.com/SoraKumo001/satoru)
-- [Next.js Documentation](https://nextjs.org/docs)
-
+- [satoru-render Repository](https://github.com/SoraKumo001/satoru) - レンダリングエンジンのコア。
