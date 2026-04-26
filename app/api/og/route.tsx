@@ -31,14 +31,14 @@ export async function GET(request: Request) {
     // 画像化 (satoru-renderへ取得したHTML文字列をそのまま渡す)
     const png = await render({
       value: html,
-      width: 1200,
-      // 先頭部分を切り抜く
-      crop: {
-        x: 0,
-        y: 0,
-        width: 1200,
-        height: 630,
-      },
+      //　キャンパスサイズ(高さは自動)
+      width: 1800,
+      //　最終的な出力サイズ
+      outputWidth: 1200,
+      outputHeight: 630,
+      // HTMLをキャンバスに合わせてどのように調整するか
+      fit: "cover",
+      fitPosition: { y: 0, x: 0.5 },
       baseUrl,
       format: "png",
     });
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
       status: 200,
       headers: {
         "Content-Type": "image/png",
-        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=3600",
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=36000",
       },
     });
   } catch (err: unknown) {
