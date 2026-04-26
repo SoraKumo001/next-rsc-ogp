@@ -2,11 +2,18 @@ import { getAreaList } from "@/lib/jma";
 import { getMetadata } from "@/lib/metadata";
 import Link from "next/link";
 
-export const metadata = getMetadata({
-  title: "全国天気予報 | Satoru Render",
-  description: "気象庁の最新データに基づいた、全国各地の天気予報一覧です。",
-  path: "/",
-});
+export async function generateMetadata(props: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const searchParams = await props.searchParams;
+  const queryString = new URLSearchParams(searchParams as any).toString();
+  const path = `/${queryString ? `?${queryString}` : ""}`;
+  return getMetadata({
+    title: "全国天気予報 | Satoru Render",
+    description: "気象庁の最新データに基づいた、全国各地の天気予報一覧です。",
+    path,
+  });
+}
 
 export default async function Page(props: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

@@ -6,19 +6,23 @@ import { notFound } from "next/navigation";
 
 export async function generateMetadata(props: {
   params: Promise<{ code: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const params = await props.params;
+  const searchParams = await props.searchParams;
   const code = params.code;
+  const queryString = new URLSearchParams(searchParams as any).toString();
+  const path = `/forecast/${code}${queryString ? `?${queryString}` : ""}`;
   try {
     const forecast = await getForecast(code);
     const areaName = forecast[0].timeSeries[0].areas[0].area.name;
     return getMetadata({
       title: `${areaName}の天気予報`,
       description: `${areaName}の直近の天気予報を表示します。`,
-      path: `/forecast/${code}`,
+      path,
     });
   } catch {
-    return getMetadata({ title: "天気予報", path: `/forecast/${code}` });
+    return getMetadata({ title: "天気予報", path });
   }
 }
 
