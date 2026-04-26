@@ -27,8 +27,8 @@ importers:
         specifier: 19.2.5
         version: 19.2.5(react@19.2.5)
       satoru-render:
-        specifier: 1.0.9
-        version: 1.0.9(@unocss/core@66.6.8)(@unocss/preset-wind4@66.6.8)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+        specifier: 1.0.10
+        version: 1.0.10(@unocss/core@66.6.8)(@unocss/preset-wind4@66.6.8)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4
@@ -1692,8 +1692,8 @@ packages:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
 
-  satoru-render@1.0.9:
-    resolution: {integrity: sha512-TMxnFitr78nk39gYuBCcNEgr8dZ5++q4O9xlhRJvXddCqNXHuCR0Gn2SIv+jAoVsvA4nAR7m1HUZeXH2u1bXcw==}
+  satoru-render@1.0.10:
+    resolution: {integrity: sha512-N8is1tceZ+IQFBh2at961rWCXZD+Bd6ag76T+dxOntaeg0BCZZBOXIhJhamMGyetT0PZiK3lDkfXtb8R3FbCQg==}
     hasBin: true
     peerDependencies:
       '@unocss/core': ^66.6.5
@@ -3681,7 +3681,7 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  satoru-render@1.0.9(@unocss/core@66.6.8)(@unocss/preset-wind4@66.6.8)(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+  satoru-render@1.0.10(@unocss/core@66.6.8)(@unocss/preset-wind4@66.6.8)(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
     dependencies:
       worker-lib: 2.2.0
     optionalDependencies:

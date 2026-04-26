@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, Noto_Sans_JP, Noto_Serif_JP, JetBrains_Mono } from "next/font/google";
+import {
+  Inter,
+  Instrument_Serif,
+  Noto_Sans_JP,
+  Noto_Serif_JP,
+  JetBrains_Mono,
+  Noto_Emoji,
+} from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -35,6 +42,11 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
+const notoEmoji = Noto_Emoji({
+  variable: "--font-noto-emoji",
+  subsets: ["emoji"],
+});
+
 export const metadata: Metadata = {
   title: "Satoru Render Showcase",
   description: "High-fidelity dynamic OGP generation library.",
@@ -48,7 +60,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${inter.variable} ${notoJP.variable} ${notoSerifJP.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} antialiased dark`}
+      className={`${inter.variable} ${notoJP.variable} ${notoSerifJP.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} ${notoEmoji.variable} antialiased dark`}
     >
       <body className="flex flex-col bg-background text-white selection:bg-white/10">
         {children}
